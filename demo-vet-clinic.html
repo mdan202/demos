@@ -316,6 +316,65 @@ footer{background:var(--navy);padding:56px 64px 32px;}
   });
 })();
 </script>
+<script>
+/* ╔══════════════════════════════════════════════════════════════════╗
+   ║  BUSINESS CONFIG — edit ONLY this block, then deploy to Netlify  ║
+   ╚══════════════════════════════════════════════════════════════════╝ */
+const BIZ = {
+  name:              "Paws & Care",
+  city:              "Beirut",
+  year_founded:      "2013",
+  phone:             "+961 1 234 567",
+  phone_link:        "+9611234567",
+  phone_emergency:   "+961 1 999 000",
+  phone_emerg_link:  "+9611999000",
+  whatsapp:          "96171234567",
+  address:           "Hamra Street, Beirut, Lebanon",
+  hours:             "Mon–Sat: 8:00 AM – 8:00 PM<br>Sunday: Emergency only",
+  rating:            "4.9",
+  review_count:      "320+",
+
+  r1_text:  "Dr. Sara is incredible. She explained everything clearly, and my dog came out of surgery perfectly.",
+  r1_name:  "Tariq A.",  r1_since: "Client since 2021 · Golden Retriever owner",
+  r2_text:  "My cat had an emergency at 11pm and they answered on the first ring. They saved her life.",
+  r2_name:  "Lama S.",   r2_since: "Client since 2020 · Two cats",
+  r3_text:  "None of the other vets in Beirut come close. The lab results came same day. Exceptional.",
+  r3_name:  "Khalid M.", r3_since: "Client since 2019 · Three dogs",
+
+  photo_hero:         "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=1400&q=85",
+  photo_services:     "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=900&q=85",
+  photo_work1:        "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1000&q=85",
+  photo_work2:        "https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?w=700&q=85",
+  photo_work3:        "https://images.unsplash.com/photo-1548767797-d8c844163c4a?w=700&q=85",
+  photo_work4:        "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=700&q=85",
+  photo_work5:        "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=700&q=85",
+  photo_about_main:   "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=900&q=85",
+  photo_about_accent: "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=600&q=85",
+  photo_location:     "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=80",
+};
+/* ═══════════════════════════════════════════════════════════════════════════ */
+function applyBIZ(){
+  const s=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
+  const t=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  document.querySelectorAll('.biz-name').forEach(e=>e.textContent=BIZ.name);
+  document.querySelectorAll('.biz-wa-link').forEach(e=>e.href='https://wa.me/'+BIZ.whatsapp);
+  document.querySelectorAll('.biz-emerg-link').forEach(e=>{e.href='tel:'+BIZ.phone_emerg_link;});
+  document.querySelectorAll('.biz-emerg-text').forEach(e=>e.textContent=BIZ.phone_emergency);
+  t('biz-rating',BIZ.rating);
+  s('biz-review-count','Based on '+BIZ.review_count+' reviews');
+  s('biz-address',BIZ.address); s('biz-hours',BIZ.hours); t('biz-phone',BIZ.phone);
+  const pl=document.getElementById('biz-phone-link');if(pl){pl.textContent=BIZ.phone;pl.href='tel:'+BIZ.phone_link;}
+  t('biz-r1-text','"'+BIZ.r1_text+'"');t('biz-r1-name',BIZ.r1_name);t('biz-r1-since',BIZ.r1_since);
+  t('biz-r2-text','"'+BIZ.r2_text+'"');t('biz-r2-name',BIZ.r2_name);t('biz-r2-since',BIZ.r2_since);
+  t('biz-r3-text','"'+BIZ.r3_text+'"');t('biz-r3-name',BIZ.r3_name);t('biz-r3-since',BIZ.r3_since);
+  s('biz-footer-desc',BIZ.city+"'s most trusted veterinary clinic. "+BIZ.year_founded+" — compassionate care for every companion.");
+  t('biz-footer-copy','© 2025 '+BIZ.name+' Veterinary Clinic · All Rights Reserved');
+  ['hero','services','work1','work2','work3','work4','work5','about-main','about-accent','location']
+    .forEach(k=>{const e=document.getElementById('biz-photo-'+k);if(e)e.src=BIZ['photo_'+k.replace('-','_')];});
+}
+applyBIZ();
+</script>
+
 
 <!-- ANNOUNCE BAR -->
 
@@ -335,7 +394,7 @@ footer{background:var(--navy);padding:56px 64px 32px;}
     <li><a href="#location">Location</a></li>
   </ul>
   <div class="nav-right">
-    <a href="tel:+966112345678" class="nav-phone">📞 Emergency Line</a>
+    <a href="tel:+966112345678" class="nav-phone biz-emerg-link"><span class="biz-emerg-text">📞 Emergency Line</span></a>
     <a href="#location" class="nav-cta">Book Appointment</a>
   </div>
 </nav>
@@ -347,7 +406,7 @@ footer{background:var(--navy);padding:56px 64px 32px;}
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-shopname">{SHOP NAME}</div>
+    <div class="hero-shopname biz-name">{SHOP NAME}</div>
     <div class="hero-trust-badge">
       <span>🏥 Certified Veterinary Clinic — Beirut</span>
     </div>
@@ -503,26 +562,26 @@ footer{background:var(--navy);padding:56px 64px 32px;}
       <div class="reviews-list stagger">
         <div class="review-block fade-up">
           <div class="review-block-stars">★★★★★</div>
-          <p class="review-block-text">"Dr. Sara is incredible. She took the time to explain everything clearly, and my dog came out of surgery perfectly. The entire staff is warm, calm, and professional."</p>
+          <p class="review-block-text" id="biz-r1-text">"Dr. Sara is incredible. She took the time to explain everything clearly, and my dog came out of surgery perfectly. The entire staff is warm, calm, and professional."</p>
           <div class="review-block-person">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="" class="review-block-avatar" loading="lazy">
-            <div><div class="review-block-name">Tariq A.</div><div class="review-block-info">Client since 2021 · Golden Retriever owner</div></div>
+            <div><div class="review-block-name" id="biz-r1-name">Tariq A.</div><div class="review-block-info" id="biz-r1-since">Client since 2021 · Golden Retriever owner</div></div>
           </div>
         </div>
         <div class="review-block fade-up">
           <div class="review-block-stars">★★★★★</div>
-          <p class="review-block-text">"My cat had an emergency at 11pm and they answered on the first ring. Within 20 minutes she was being treated. I can't thank Paws &amp; Care enough — they saved her life."</p>
+          <p class="review-block-text" id="biz-r2-text">"My cat had an emergency at 11pm and they answered on the first ring. Within 20 minutes she was being treated. They saved her life."</p>
           <div class="review-block-person">
             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="" class="review-block-avatar" loading="lazy">
-            <div><div class="review-block-name">Lama S.</div><div class="review-block-info">Client since 2020 · Two cats</div></div>
+            <div><div class="review-block-name" id="biz-r2-name">Lama S.</div><div class="review-block-info" id="biz-r2-since">Client since 2020 · Two cats</div></div>
           </div>
         </div>
         <div class="review-block fade-up">
           <div class="review-block-stars">★★★★★</div>
-          <p class="review-block-text">"I've been to several vets in Beirut. None come close to the level of care and transparency here. The lab results came same day and the follow-up was exceptional."</p>
+          <p class="review-block-text" id="biz-r3-text">"I've been to several vets in Beirut. None come close to the level of care and transparency here. The lab results came same day and the follow-up was exceptional."</p>
           <div class="review-block-person">
             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="" class="review-block-avatar" loading="lazy">
-            <div><div class="review-block-name">Khalid M.</div><div class="review-block-info">Client since 2019 · Three dogs</div></div>
+            <div><div class="review-block-name" id="biz-r3-name">Khalid M.</div><div class="review-block-info" id="biz-r3-since">Client since 2019 · Three dogs</div></div>
           </div>
         </div>
       </div>
@@ -584,8 +643,8 @@ footer{background:var(--navy);padding:56px 64px 32px;}
         <div class="teal-rule"></div>
       </div>
       <div class="location-info-cards fade-up">
-        <div class="loc-card"><div class="loc-card-icon">📍</div><div><div class="loc-card-label">Address</div><div class="loc-card-val">Al Wurud District, King Abdullah Road<br>Beirut, Saudi Arabia</div></div></div>
-        <div class="loc-card"><div class="loc-card-icon">🕐</div><div><div class="loc-card-label">Clinic Hours</div><div class="loc-card-val">Sat–Thu: 8:00 AM – 10:00 PM<br>Friday: 4:00 PM – 10:00 PM</div></div></div>
+        <div class="loc-card"><div class="loc-card-icon">📍</div><div><div class="loc-card-label">Address</div><div class="loc-card-val" id="biz-address">Al Wurud District, King Abdullah Road<br>Beirut, Saudi Arabia</div></div></div>
+        <div class="loc-card"><div class="loc-card-icon">🕐</div><div><div class="loc-card-label">Clinic Hours</div><div class="loc-card-val" id="biz-hours">Sat–Thu: 8:00 AM – 10:00 PM<br>Friday: 4:00 PM – 10:00 PM</div></div></div>
         <div class="loc-card"><div class="loc-card-icon">🚨</div><div><div class="loc-card-label">Emergency</div><div class="loc-card-val">24/7 · +966 11 999 0000</div></div></div>
         <div class="loc-card"><div class="loc-card-icon">📞</div><div><div class="loc-card-label">Main Line</div><div class="loc-card-val">+966 11 234 5678</div></div></div>
       </div>
@@ -617,11 +676,11 @@ footer{background:var(--navy);padding:56px 64px 32px;}
 <footer>
   <div class="footer-top">
     <div>
-      <div class="footer-logo-wrap">
-        <div class="footer-logo-icon">🐾</div>
-        <div class="footer-logo-name">Paws &amp; Care</div>
+      <div class="footer-logo-wrap biz-name">
+        <div class="footer-logo-icon biz-name">🐾</div>
+        <div class="footer-logo-name biz-name">Paws &amp; Care</div>
       </div>
-      <p class="footer-brand-desc">Beirut's most trusted veterinary clinic. 12+ years of compassionate care for every companion. Est. 2013.</p>
+      <p class="footer-brand-desc" id="biz-footer-desc">Beirut's most trusted veterinary clinic. 12+ years of compassionate care for every companion. Est. 2013.</p>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Services</div>
@@ -645,15 +704,15 @@ footer{background:var(--navy);padding:56px 64px 32px;}
     <div class="footer-col">
       <div class="footer-col-title">Contact</div>
       <ul>
-        <li><a href="tel:+966112345678">+966 11 234 5678</a></li>
-        <li><a href="tel:+966119990000">🚨 Emergency Line</a></li>
+        <li><a href="tel:+966112345678" id="biz-phone-link">+966 11 234 5678</a></li>
+        <li><a href="tel:+966119990000" class="biz-emerg-link">🚨 Emergency Line</a></li>
         <li><a href="#">Instagram</a></li>
         <li><a href="#">WhatsApp</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Paws &amp; Care Veterinary Clinic · Beirut, Lebanon</div>
+    <div class="footer-copy" id="biz-footer-copy">© 2025 Paws &amp; Care Veterinary Clinic · Beirut, Lebanon</div>
     <div class="footer-links">
       <a href="#">Instagram</a>
       <a href="#">Snapchat</a>
@@ -664,7 +723,7 @@ footer{background:var(--navy);padding:56px 64px 32px;}
 </footer>
 
 <!-- FLOATING EMERGENCY CALL -->
-<a href="tel:+966119990000" class="float-emergency" title="24/7 Emergency Line">
+<a href="tel:+966119990000" class="float-emergency biz-emerg-link" title="24/7 Emergency Line">
   <div class="float-emergency-icon">🚨</div>
   <div class="float-emergency-text">
     <span class="float-emergency-label">Emergency</span>

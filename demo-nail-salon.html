@@ -273,6 +273,60 @@ footer{background:var(--dark);padding:56px 60px 32px;}
   });
 })();
 </script>
+<script>
+/* ╔══════════════════════════════════════════════════════════════════╗
+   ║  BUSINESS CONFIG — edit ONLY this block, then deploy to Netlify  ║
+   ╚══════════════════════════════════════════════════════════════════╝ */
+const BIZ = {
+  name:         "Gloss Nail Studio",
+  city:         "Beirut",
+  year_founded: "2020",
+  phone:        "+961 1 234 567",
+  phone_link:   "+9611234567",
+  whatsapp:     "96171234567",
+  address:      "Hamra Street, Beirut, Lebanon",
+  hours:        "Mon–Sat: 10:00 AM – 8:00 PM<br>Sunday: Closed",
+  rating:       "4.9",
+  review_count: "350+",
+
+  r1_text:  "My wedding nails were absolutely perfect. Exactly what I envisioned. Highly recommend!",
+  r1_name:  "Noura F.",  r1_since: "Bridal client",
+  r2_text:  "I've been coming every three weeks since they opened. The gel manicure lasts forever.",
+  r2_name:  "Hessa A.", r2_since: "Regular since 2023",
+  r3_text:  "Came in with a reference picture and they nailed it exactly. Best nail studio in Beirut.",
+  r3_name:  "Reem S.",  r3_since: "Client since 2022",
+
+  photo_hero:         "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1400&q=85",
+  photo_services:     "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&q=85",
+  photo_work1:        "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1000&q=85",
+  photo_work2:        "https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=700&q=85",
+  photo_work3:        "https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=700&q=85",
+  photo_work4:        "https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=700&q=85",
+  photo_work5:        "https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=700&q=85",
+  photo_about_main:   "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&q=85",
+  photo_about_accent: "https://images.unsplash.com/photo-1604902396830-aca29e19b067?w=600&q=85",
+  photo_location:     "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=80",
+};
+/* ═══════════════════════════════════════════════════════════════════════════ */
+function applyBIZ(){
+  const s=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
+  const t=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  document.querySelectorAll('.biz-name').forEach(e=>e.textContent=BIZ.name);
+  document.querySelectorAll('.biz-wa-link').forEach(e=>e.href='https://wa.me/'+BIZ.whatsapp);
+  t('biz-rating',BIZ.rating);
+  s('biz-review-count','Based on '+BIZ.review_count+' reviews');
+  s('biz-address',BIZ.address); s('biz-hours',BIZ.hours); t('biz-phone',BIZ.phone);
+  const pl=document.getElementById('biz-phone-link');if(pl){pl.textContent=BIZ.phone;pl.href='tel:'+BIZ.phone_link;}
+  t('biz-r1-text','"'+BIZ.r1_text+'"');t('biz-r1-name',BIZ.r1_name);t('biz-r1-since',BIZ.r1_since);
+  t('biz-r2-text','"'+BIZ.r2_text+'"');t('biz-r2-name',BIZ.r2_name);t('biz-r2-since',BIZ.r2_since);
+  t('biz-r3-text','"'+BIZ.r3_text+'"');t('biz-r3-name',BIZ.r3_name);t('biz-r3-since',BIZ.r3_since);
+  t('biz-footer-copy','© 2025 '+BIZ.name+' · All Rights Reserved');
+  ['hero','services','work1','work2','work3','work4','work5','about-main','about-accent','location']
+    .forEach(k=>{const e=document.getElementById('biz-photo-'+k);if(e)e.src=BIZ['photo_'+k.replace('-','_')];});
+}
+applyBIZ();
+</script>
+
 
 <!-- ANNOUNCE BAR -->
 
@@ -280,7 +334,7 @@ footer{background:var(--dark);padding:56px 60px 32px;}
 <!-- NAV -->
 <nav>
   <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
-  <a href="#hero" class="nav-logo"><em>{SHOP NAME}</em></a>
+  <a href="#hero" class="nav-logo"><em class="biz-name">{SHOP NAME}</em></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Gallery</a></li>
@@ -298,7 +352,7 @@ footer{background:var(--dark);padding:56px 60px 32px;}
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-shopname">{SHOP NAME}</div>
+    <div class="hero-shopname biz-name">{SHOP NAME}</div>
     <div class="hero-tagline">Luxury Nail Studio · Beirut</div>
     <h1 class="hero-title">Your nails,<em>your art.</em></h1>
     <div class="hero-divider"></div>
@@ -373,36 +427,36 @@ footer{background:var(--dark);padding:56px 60px 32px;}
         <div class="pink-rule"></div>
       </div>
       <div class="rating-strip">
-        <div class="rating-val">4.9</div>
+        <div class="rating-val" id="biz-rating">4.9</div>
         <div>
           <div class="rating-stars-big">★★★★★</div>
-          <div class="rating-info">Based on 350+ reviews</div>
+          <div class="rating-info" id="biz-review-count">Based on 350+ reviews</div>
         </div>
       </div>
     </div>
     <div class="reviews-grid stagger">
       <div class="rev-card fade-up">
         <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">"My wedding nails were absolutely perfect. Exactly what I envisioned — rose gold with delicate floral details. I cried when I saw them. Highly recommend {SHOP NAME}!"</p>
+        <p class="rev-text" id="biz-r1-text">"My wedding nails were absolutely perfect. Exactly what I envisioned — rose gold with delicate floral details. I cried when I saw them."</p>
         <div class="rev-person">
           <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" class="rev-avatar" alt="" loading="lazy">
-          <div><div class="rev-name">Noura F.</div><div class="rev-when">Bridal client</div></div>
+          <div><div class="rev-name" id="biz-r1-name">Noura F.</div><div class="rev-when" id="biz-r1-since">Bridal client</div></div>
         </div>
       </div>
       <div class="rev-card fade-up">
         <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">"I've been coming every three weeks since they opened. The gel manicure lasts forever and the nail art is always on trend. Clean, professional, and so relaxing."</p>
+        <p class="rev-text" id="biz-r2-text">"I've been coming every three weeks since they opened. The gel manicure lasts forever and the nail art is always on trend. Clean, professional, and so relaxing."</p>
         <div class="rev-person">
           <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&q=80" class="rev-avatar" alt="" loading="lazy">
-          <div><div class="rev-name">Hessa A.</div><div class="rev-when">Regular since 2023</div></div>
+          <div><div class="rev-name" id="biz-r2-name">Hessa A.</div><div class="rev-when" id="biz-r2-since">Regular since 2023</div></div>
         </div>
       </div>
       <div class="rev-card fade-up">
         <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">"Came in with a reference picture and they nailed it exactly — chrome lavender ombré with tiny gems. I was amazed at how skilled the team is. Best nail studio in Beirut."</p>
+        <p class="rev-text" id="biz-r3-text">"Came in with a reference picture and they nailed it exactly — chrome lavender ombré with tiny gems. I was amazed at how skilled the team is. Best nail studio in Beirut."</p>
         <div class="rev-person">
           <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80" class="rev-avatar" alt="" loading="lazy">
-          <div><div class="rev-name">Reem S.</div><div class="rev-when">Client since 2022</div></div>
+          <div><div class="rev-name" id="biz-r3-name">Reem S.</div><div class="rev-when" id="biz-r3-since">Client since 2022</div></div>
         </div>
       </div>
     </div>
@@ -463,9 +517,9 @@ footer{background:var(--dark);padding:56px 60px 32px;}
         <div class="pink-rule"></div>
       </div>
       <div class="loc-list fade-up">
-        <div class="loc-item"><div class="loc-emoji">📍</div><div><div class="loc-label">Address</div><div class="loc-val">Al Malqa District, Exit 14<br>Beirut, Saudi Arabia</div></div></div>
-        <div class="loc-item"><div class="loc-emoji">🕐</div><div><div class="loc-label">Hours</div><div class="loc-val">Sat–Thu: 10:00 AM – 10:00 PM<br>Friday: 2:00 PM – 10:00 PM</div></div></div>
-        <div class="loc-item"><div class="loc-emoji">📞</div><div><div class="loc-label">Phone &amp; WhatsApp</div><div class="loc-val">+966 11 789 0123</div></div></div>
+        <div class="loc-item"><div class="loc-emoji">📍</div><div><div class="loc-label">Address</div><div class="loc-val" id="biz-address">Al Malqa District, Exit 14<br>Beirut, Saudi Arabia</div></div></div>
+        <div class="loc-item"><div class="loc-emoji">🕐</div><div><div class="loc-label">Hours</div><div class="loc-val" id="biz-hours">Sat–Thu: 10:00 AM – 10:00 PM<br>Friday: 2:00 PM – 10:00 PM</div></div></div>
+        <div class="loc-item"><div class="loc-emoji">📞</div><div><div class="loc-label">Phone &amp; WhatsApp</div><div class="loc-val" id="biz-phone">+966 11 789 0123</div></div></div>
         <div class="loc-item"><div class="loc-emoji">📸</div><div><div class="loc-label">Instagram</div><div class="loc-val">@petalnailstudio</div></div></div>
       </div>
       <div class="book-panel fade-up">
@@ -494,7 +548,7 @@ footer{background:var(--dark);padding:56px 60px 32px;}
 <footer>
   <div class="footer-top">
     <div>
-      <div class="footer-brand-logo">{SHOP NAME} ✦</div>
+      <div class="footer-brand-logo biz-name">{SHOP NAME} ✦</div>
       <p class="footer-brand-desc">Beirut's premier nail studio — artistry, care, and the finest vegan products. Est. 2020.</p>
     </div>
     <div class="footer-col">
@@ -527,7 +581,7 @@ footer{background:var(--dark);padding:56px 60px 32px;}
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 {SHOP NAME} Nail Studio · Beirut, Saudi Arabia</div>
+    <div class="footer-copy" id="biz-footer-copy">© 2025 {SHOP NAME} Nail Studio · Beirut, Saudi Arabia</div>
     <div class="footer-links">
       <a href="#">Instagram</a>
       <a href="#">Snapchat</a>
@@ -537,7 +591,7 @@ footer{background:var(--dark);padding:56px 60px 32px;}
 </footer>
 
 <!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/966117890123" class="float-wa" target="_blank" rel="noopener" title="Chat on WhatsApp">
+<a href="https://wa.me/966117890123" class="float-wa biz-wa-link" target="_blank" rel="noopener" title="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
 
